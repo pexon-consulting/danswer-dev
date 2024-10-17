@@ -1,5 +1,7 @@
 "use client";
 
+
+import { useTranslation } from "react-i18next";
 import { generateRandomIconShape, createSVG } from "@/lib/assistantIconUtils";
 
 import { CCPairBasicInfo, DocumentSet, User } from "@/lib/types";
@@ -106,6 +108,7 @@ export function AssistantEditor({
   admin?: boolean;
 }) {
   const router = useRouter();
+  const { t } = useTranslation("search");
 
   const { popup, setPopup } = usePopup();
 
@@ -1088,7 +1091,7 @@ export function AssistantEditor({
                                         </div>
 
                                         <div className="mt-3">
-                                          <Label small>Description</Label>
+                                          <Label small>{t("Description")}</Label>
                                           <SubLabel>
                                             A description which tells the user
                                             what they might want to use this

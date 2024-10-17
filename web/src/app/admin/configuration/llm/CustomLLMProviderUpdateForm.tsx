@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { LoadingAnimation } from "@/components/Loading";
 import { Button, Divider, Text } from "@tremor/react";
 import { AdvancedOptionsToggle } from "@/components/AdvancedOptionsToggle";
@@ -50,6 +51,7 @@ export function CustomLLMProviderUpdateForm({
   const [testError, setTestError] = useState<string>("");
 
   const [showAdvancedOptions, setShowAdvancedOptions] = useState(false);
+  const { t } = useTranslation("modal");
 
   // Define the initial values based on the provider's requirements
   const initialValues = {
@@ -235,11 +237,7 @@ export function CustomLLMProviderUpdateForm({
 
             <Divider />
 
-            <SubLabel>
-              Fill in the following as is needed. Refer to the LiteLLM
-              documentation for the model provider name specified above in order
-              to determine which fields are required.
-            </SubLabel>
+            <SubLabel>{t("Fill in the following as is needed. Refer to the LiteLLM documentation for the model provider name specified above in order to determine which fields are required.")}</SubLabel>
 
             <TextFormField
               name="api_key"
@@ -268,19 +266,12 @@ export function CustomLLMProviderUpdateForm({
               placeholder="API Version"
             />
 
-            <Label>[Optional] Custom Configs</Label>
+            <Label>{t("[Optional] Custom Configs")}</Label>
             <SubLabel>
               <>
-                <div>
-                  Additional configurations needed by the model provider. Are
-                  passed to litellm via environment variables.
-                </div>
+                <div>{t("Additional configurations needed by the model provider. Are passed to litellm via environment variables.")}</div>
 
-                <div className="mt-2">
-                  For example, when configuring the Cloudflare provider, you
-                  would need to set `CLOUDFLARE_ACCOUNT_ID` as the key and your
-                  Cloudflare account ID as the value.
-                </div>
+                <div className="mt-2">{t("For example, when configuring the Cloudflare provider, you would need to set `CLOUDFLARE_ACCOUNT_ID` as the key and your Cloudflare account ID as the value.")}</div>
               </>
             </SubLabel>
 
@@ -289,7 +280,8 @@ export function CustomLLMProviderUpdateForm({
               render={(arrayHelpers: ArrayHelpers<any[]>) => (
                 <div>
                   {formikProps.values.custom_config_list.map((_, index) => {
-                    return (
+                    
+return (
                       <div
                         key={index}
                         className={index === 0 ? "mt-2" : "mt-6"}
@@ -297,7 +289,7 @@ export function CustomLLMProviderUpdateForm({
                         <div className="flex">
                           <div className="w-full mr-6 border border-border p-3 rounded">
                             <div>
-                              <Label>Key</Label>
+                              <Label>{t("Key")}</Label>
                               <Field
                                 name={`custom_config_list[${index}][0]`}
                                 className={`
@@ -320,7 +312,7 @@ export function CustomLLMProviderUpdateForm({
                             </div>
 
                             <div className="mt-3">
-                              <Label>Value</Label>
+                              <Label>{t("Value")}</Label>
                               <Field
                                 name={`custom_config_list[${index}][1]`}
                                 className={`

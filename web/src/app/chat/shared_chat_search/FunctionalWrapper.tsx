@@ -1,5 +1,7 @@
 "use client";
 
+
+import { useTranslation } from "react-i18next";
 import React, { ReactNode, useContext, useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { ChatIcon, SearchIcon } from "@/components/icons/icons";
@@ -17,6 +19,7 @@ const ToggleSwitch = () => {
   });
 
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const { t } = useTranslation("search");
 
   useEffect(() => {
     const newTab = pathname === "/search" ? "search" : "chat";
@@ -53,9 +56,7 @@ const ToggleSwitch = () => {
         onClick={() => handleTabChange("search")}
       >
         <SearchIcon size={16} className="mr-2" />
-        <div className="flex  items-center">
-          Search
-          <div className="ml-2 flex content-center">
+        <div className="flex  items-center">{t("Search")}<div className="ml-2 flex content-center">
             <span className="leading-none pb-[1px] my-auto">
               {commandSymbol}
             </span>
@@ -124,7 +125,8 @@ export default function FunctionalWrapper({
     };
 
     window.addEventListener("keydown", handleKeyDown);
-    return () => {
+    
+return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [router]);

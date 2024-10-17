@@ -1,5 +1,7 @@
 "use client";
 
+
+import { useTranslation } from "react-i18next";
 import { LoadingAnimation } from "@/components/Loading";
 import { NotebookIcon } from "@/components/icons/icons";
 import { CCPairIndexingStatusTable } from "./CCPairIndexingStatusTable";
@@ -20,6 +22,7 @@ function Main() {
     isLoading: editableIndexAttemptIsLoading,
     error: editableIndexAttemptError,
   } = useConnectorCredentialIndexingStatus(undefined, true);
+  const { t } = useTranslation("connectors");
 
   if (indexAttemptIsLoading || editableIndexAttemptIsLoading) {
     return <LoadingAnimation text="" />;
@@ -44,9 +47,7 @@ function Main() {
     return (
       <Text>
         It looks like you don&apos;t have any connectors setup yet. Visit the{" "}
-        <Link className="text-link" href="/admin/add-connector">
-          Add Connector
-        </Link>{" "}
+        <Link className="text-link" href="/admin/add-connector">{t("Add Connector")}</Link>{" "}
         page to get started!
       </Text>
     );
@@ -55,7 +56,8 @@ function Main() {
   // sort by source name
   indexAttemptData.sort((a, b) => {
     if (a.connector.source < b.connector.source) {
-      return -1;
+      
+return -1;
     } else if (a.connector.source > b.connector.source) {
       return 1;
     } else {
@@ -82,6 +84,7 @@ export default function Status() {
       type: "success",
     },
   });
+  const { t } = useTranslation("connectors");
 
   return (
     <div className="mx-auto container">
@@ -91,9 +94,7 @@ export default function Status() {
         title="Existing Connectors"
         farRightElement={
           <Link href="/admin/add-connector">
-            <Button color="green" size="xs">
-              Add Connector
-            </Button>
+            <Button color="green" size="xs">{t("Add Connector")}</Button>
           </Link>
         }
       />

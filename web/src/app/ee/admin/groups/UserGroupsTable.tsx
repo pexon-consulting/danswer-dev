@@ -1,5 +1,7 @@
 "use client";
 
+
+import { useTranslation } from "react-i18next";
 import {
   Table,
   TableHead,
@@ -53,6 +55,7 @@ export const UserGroupsTable = ({
       return 0;
     }
   });
+  const { t } = useTranslation("chat");
 
   return (
     <div>
@@ -63,14 +66,15 @@ export const UserGroupsTable = ({
             <TableHeaderCell>Connectors</TableHeaderCell>
             <TableHeaderCell>Users</TableHeaderCell>
             <TableHeaderCell>Status</TableHeaderCell>
-            <TableHeaderCell>Delete</TableHeaderCell>
+            <TableHeaderCell>{t("Delete")}</TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {userGroups
             .filter((userGroup) => !userGroup.is_up_for_deletion)
             .map((userGroup) => {
-              return (
+              
+return (
                 <TableRow key={userGroup.id}>
                   <TableCell>
                     <Link

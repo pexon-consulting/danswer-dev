@@ -1,5 +1,7 @@
 "use client";
 
+
+import { useTranslation } from "react-i18next";
 import {
   Table,
   TableHead,
@@ -21,6 +23,7 @@ export function ToolsTable({ tools }: { tools: ToolSnapshot[] }) {
 
   const sortedTools = [...tools];
   sortedTools.sort((a, b) => a.id - b.id);
+  const { t } = useTranslation(["chat", "search"]);
 
   return (
     <div>
@@ -30,9 +33,9 @@ export function ToolsTable({ tools }: { tools: ToolSnapshot[] }) {
         <TableHead>
           <TableRow>
             <TableHeaderCell>Name</TableHeaderCell>
-            <TableHeaderCell>Description</TableHeaderCell>
+            <TableHeaderCell>{t("Description")}</TableHeaderCell>
             <TableHeaderCell>Built In?</TableHeaderCell>
-            <TableHeaderCell>Delete</TableHeaderCell>
+            <TableHeaderCell>{t("Delete")}</TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody>

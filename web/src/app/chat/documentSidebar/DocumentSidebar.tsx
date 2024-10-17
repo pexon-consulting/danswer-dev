@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { DanswerDocument } from "@/lib/search/interfaces";
 import { Divider, Text } from "@tremor/react";
 import { ChatDocumentDisplay } from "./ChatDocumentDisplay";
@@ -36,6 +37,7 @@ export const DocumentSidebar = forwardRef<HTMLDivElement, DocumentSidebarProps>(
     ref: ForwardedRef<HTMLDivElement>
   ) => {
     const { popup, setPopup } = usePopup();
+    const { t } = useTranslation("chat");
 
     const selectedDocumentIds =
       selectedDocuments?.map((document) => document.document_id) || [];
@@ -119,17 +121,14 @@ export const DocumentSidebar = forwardRef<HTMLDivElement, DocumentSidebarProps>(
                   ))
                 ) : (
                   <div className="mx-3">
-                    <Text>No documents found for the query.</Text>
+                    <Text>{t("No documents found for the query.")}</Text>
                   </div>
                 )}
               </div>
             ) : (
               !isLoading && (
                 <div className="ml-4 mr-3">
-                  <Text>
-                    When you run ask a question, the retrieved documents will
-                    show up here!
-                  </Text>
+                  <Text>{t("When you run ask a question, the retrieved documents will show up here!")}</Text>
                 </div>
               )
             )}

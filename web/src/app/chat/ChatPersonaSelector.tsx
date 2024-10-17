@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Persona } from "@/app/admin/assistants/interfaces";
 import { FiCheck, FiChevronDown, FiPlusSquare, FiEdit2 } from "react-icons/fi";
 import { CustomDropdown, DefaultDropdownElement } from "@/components/Dropdown";
@@ -70,6 +71,7 @@ export function ChatPersonaSelector({
   userId: string | undefined;
 }) {
   const router = useRouter();
+  const { t } = useTranslation("chat");
 
   const currentlySelectedPersona = personas.find(
     (persona) => persona.id === selectedPersonaId
@@ -119,9 +121,7 @@ export function ChatPersonaSelector({
             <DefaultDropdownElement
               name={
                 <div className="flex items-center">
-                  <FiPlusSquare className="mr-2" />
-                  New Assistant
-                </div>
+                  <FiPlusSquare className="mr-2" />{t("New Assistant")}</div>
               }
               onSelect={() => router.push("/assistants/new")}
               isSelected={false}

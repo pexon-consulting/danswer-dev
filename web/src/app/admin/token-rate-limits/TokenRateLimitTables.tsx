@@ -1,5 +1,7 @@
 "use client";
 
+
+import { useTranslation } from "react-i18next";
 import {
   Table,
   TableHead,
@@ -37,6 +39,7 @@ export const TokenRateLimitTable = ({
 }: TokenRateLimitTableArgs) => {
   const shouldRenderGroupName = () =>
     tokenRateLimits.length > 0 && tokenRateLimits[0].group_name !== undefined;
+  const { t } = useTranslation("chat");
 
   const handleEnabledChange = (id: number) => {
     const tokenRateLimit = tokenRateLimits.find(
@@ -92,12 +95,13 @@ export const TokenRateLimitTable = ({
             )}
             <TableHeaderCell>Time Window (Hours)</TableHeaderCell>
             <TableHeaderCell>Token Budget (Thousands)</TableHeaderCell>
-            {isAdmin && <TableHeaderCell>Delete</TableHeaderCell>}
+            {isAdmin && <TableHeaderCell>{t("Delete")}</TableHeaderCell>}
           </TableRow>
         </TableHead>
         <TableBody>
           {tokenRateLimits.map((tokenRateLimit) => {
-            return (
+            
+return (
               <TableRow key={tokenRateLimit.token_id}>
                 <TableCell>
                   <div className="flex justify-center">

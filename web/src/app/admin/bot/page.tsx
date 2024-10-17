@@ -1,5 +1,7 @@
 "use client";
 
+
+import { useTranslation } from "react-i18next";
 import { ThreeDotsLoader } from "@/components/Loading";
 import { PageSelector } from "@/components/PageSelector";
 import { EditIcon, SlackIcon, TrashIcon } from "@/components/icons/icons";
@@ -38,6 +40,7 @@ const SlackBotConfigsTable = ({
   setPopup: (popupSpec: PopupSpec | null) => void;
 }) => {
   const [page, setPage] = useState(1);
+  const { t } = useTranslation("chat");
 
   // sort by name for consistent ordering
   slackBotConfigs.sort((a, b) => {
@@ -58,14 +61,15 @@ const SlackBotConfigsTable = ({
             <TableHeaderCell>Channels</TableHeaderCell>
             <TableHeaderCell>Assistant</TableHeaderCell>
             <TableHeaderCell>Document Sets</TableHeaderCell>
-            <TableHeaderCell>Delete</TableHeaderCell>
+            <TableHeaderCell>{t("Delete")}</TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {slackBotConfigs
             .slice(numToDisplay * (page - 1), numToDisplay * page)
             .map((slackBotConfig) => {
-              return (
+              
+return (
                 <TableRow key={slackBotConfig.id}>
                   <TableCell>
                     <div className="flex gap-x-2">

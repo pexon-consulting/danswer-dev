@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   DateRangePicker,
   DateRangePickerItem,
@@ -15,6 +16,7 @@ export function DateRangeSelector({
   value: DateRangePickerValue;
   onValueChange: (value: DateRangePickerValue) => void;
 }) {
+  const { t } = useTranslation("search");
   return (
     <div>
       <Text className="my-auto mr-2 font-medium mb-1">Date Range</Text>
@@ -38,9 +40,7 @@ export function DateRangeSelector({
           value="today"
           from={getXDaysAgo(1)}
           to={getXDaysAgo(0)}
-        >
-          Today
-        </DateRangePickerItem>
+        >{t("Today")}</DateRangePickerItem>
       </DateRangePicker>
     </div>
   );

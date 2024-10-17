@@ -1,5 +1,7 @@
 "use client";
 
+
+import { useTranslation } from "react-i18next";
 import { ThreeDotsLoader } from "@/components/Loading";
 import { PageSelector } from "@/components/PageSelector";
 import { BookmarkIcon, InfoIcon } from "@/components/icons/icons";
@@ -129,6 +131,7 @@ const DocumentSetTable = ({
       (ds) => !editableDocumentSets.some((eds) => eds.id === ds.id)
     ),
   ];
+  const { t } = useTranslation("chat");
 
   return (
     <div>
@@ -140,7 +143,7 @@ const DocumentSetTable = ({
             <TableHeaderCell>Connectors</TableHeaderCell>
             <TableHeaderCell>Status</TableHeaderCell>
             <TableHeaderCell>Public</TableHeaderCell>
-            <TableHeaderCell>Delete</TableHeaderCell>
+            <TableHeaderCell>{t("Delete")}</TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -150,7 +153,8 @@ const DocumentSetTable = ({
               const isEditable = editableDocumentSets.some(
                 (eds) => eds.id === documentSet.id
               );
-              return (
+              
+return (
                 <TableRow key={documentSet.id}>
                   <TableCell className="whitespace-normal break-all">
                     <div className="flex gap-x-1 text-emphasis">

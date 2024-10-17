@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { ModalWrapper } from "@/components/modals/ModalWrapper";
 import { Button, Callout, Divider, Text } from "@tremor/react";
@@ -55,6 +56,7 @@ export function ShareChatSessionModal({
       ? buildShareLink(chatSessionId)
       : ""
   );
+  const { t } = useTranslation("chat");
 
   return (
     <ModalWrapper onClose={onClose} modalClassName="max-w-3xl">
@@ -70,11 +72,7 @@ export function ShareChatSessionModal({
         <div className="flex mt-2">
           {shareLink ? (
             <div>
-              <Text>
-                This chat session is currently shared. Anyone at your
-                organization can view the message history using the following
-                link:
-              </Text>
+              <Text>{t("This chat session is currently shared. Anyone at your organization can view the message history using the following link:")}</Text>
 
               <div className="flex mt-2">
                 <CopyButton content={shareLink} />
@@ -90,9 +88,7 @@ export function ShareChatSessionModal({
 
               <Divider />
 
-              <Text className="mb-4">
-                Click the button below to make the chat private again.
-              </Text>
+              <Text className="mb-4">{t("Click the button below to make the chat private again.")}</Text>
 
               <Button
                 onClick={async () => {
@@ -116,12 +112,7 @@ export function ShareChatSessionModal({
             </div>
           ) : (
             <div>
-              <Callout title="Warning" color="yellow" className="mb-4">
-                Ensure that all content in the chat is safe to share with the
-                whole organization. The content of the retrieved documents will
-                not be visible, but the names of cited documents as well as the
-                AI and human messages will be visible.
-              </Callout>
+              <Callout title="Warning" color="yellow" className="mb-4">{t("Ensure that all content in the chat is safe to share with the whole organization. The content of the retrieved documents will not be visible, but the names of cited documents as well as the AI and human messages will be visible.")}</Callout>
 
               <Button
                 icon={FiCopy}

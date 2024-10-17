@@ -1,5 +1,7 @@
 "use client";
 
+
+import { useTranslation } from "react-i18next";
 import { FiEdit, FiFolderPlus } from "react-icons/fi";
 import React, { ForwardedRef, forwardRef, useContext, useState } from "react";
 import Link from "next/link";
@@ -56,6 +58,7 @@ export const HistorySidebar = forwardRef<HTMLDivElement, HistorySidebarProps>(
   ) => {
     const router = useRouter();
     const { popup, setPopup } = usePopup();
+    const { t } = useTranslation("chat");
 
     // For determining intial focus state
     const [newFolderId, setNewFolderId] = useState<number | null>(null);
@@ -129,7 +132,7 @@ export const HistorySidebar = forwardRef<HTMLDivElement, HistorySidebarProps>(
                 }}
               >
                 <FiEdit className="flex-none " />
-                <p className="my-auto flex items-center text-sm">New Chat</p>
+                <p className="my-auto flex items-center text-sm">{t("New Chat")}</p>
               </Link>
               <button
                 onClick={() =>
@@ -149,7 +152,7 @@ export const HistorySidebar = forwardRef<HTMLDivElement, HistorySidebarProps>(
                 className="w-full p-2 bg-white border-border border rounded items-center hover:bg-background-200 cursor-pointer transition-all duration-150 flex gap-x-2"
               >
                 <FiFolderPlus className="my-auto" />
-                <p className="my-auto flex items-center text-sm">New Folder</p>
+                <p className="my-auto flex items-center text-sm">{t("New Folder")}</p>
               </button>
 
               <Link

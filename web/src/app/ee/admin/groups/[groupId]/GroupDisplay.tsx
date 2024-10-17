@@ -1,5 +1,7 @@
 "use client";
 
+
+import { useTranslation } from "react-i18next";
 import { usePopup } from "@/components/admin/connectors/Popup";
 import { useState } from "react";
 import { ConnectorTitle } from "@/components/admin/connectors/ConnectorTitle";
@@ -118,6 +120,7 @@ export const GroupDisplay = ({
   refreshUserGroup,
 }: GroupDisplayProps) => {
   const { popup, setPopup } = usePopup();
+  const { t } = useTranslation("search");
   const [addMemberFormVisible, setAddMemberFormVisible] = useState(false);
   const [addConnectorFormVisible, setAddConnectorFormVisible] = useState(false);
   const [addRateLimitFormVisible, setAddRateLimitFormVisible] = useState(false);
@@ -393,13 +396,14 @@ export const GroupDisplay = ({
 
       <Divider />
 
-      <h2 className="text-xl font-bold mt-8 mb-2">Assistants</h2>
+      <h2 className="text-xl font-bold mt-8 mb-2">{t("Assistants")}</h2>
 
       <div>
         {userGroup.document_sets.length > 0 ? (
           <div className="flex flex-wrap gap-2">
             {userGroup.personas.map((persona) => {
-              return (
+              
+return (
                 <Bubble isSelected key={persona.id}>
                   <div className="flex">
                     <RobotIcon />

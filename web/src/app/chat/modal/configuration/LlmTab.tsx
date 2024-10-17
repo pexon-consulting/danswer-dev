@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { useChatContext } from "@/components/context/ChatContext";
 import { LlmOverrideManager } from "@/lib/hooks";
 import React, { forwardRef, useCallback, useState } from "react";
@@ -54,11 +55,12 @@ export const LlmTab = forwardRef<HTMLDivElement, LlmTabProps>(
       setLocalTemperature(value);
       debouncedSetTemperature(value);
     };
+    const { t } = useTranslation("modal");
 
     return (
       <div className="w-full">
         <div className="flex w-full justify-between content-center mb-2 gap-x-2">
-          <label className="block text-sm font-medium">Choose Model</label>
+          <label className="block text-sm font-medium">{t("Choose Model")}</label>
           <button
             onClick={() => {
               close();
@@ -74,7 +76,8 @@ export const LlmTab = forwardRef<HTMLDivElement, LlmTabProps>(
           currentLlm={currentLlm}
           onSelect={(value: string | null) => {
             if (value == null) {
-              return;
+              
+return;
             }
             setLlmOverride(destructureValue(value));
             if (chatSessionId) {
@@ -92,7 +95,7 @@ export const LlmTab = forwardRef<HTMLDivElement, LlmTabProps>(
             <span className="mr-2 text-xs text-primary">
               {isTemperatureExpanded ? "▼" : "►"}
             </span>
-            <span>Temperature</span>
+            <span>{t("Temperature")}</span>
           </button>
 
           {isTemperatureExpanded && (

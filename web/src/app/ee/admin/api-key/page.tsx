@@ -1,5 +1,7 @@
 "use client";
 
+
+import { useTranslation } from "react-i18next";
 import { ThreeDotsLoader } from "@/components/Loading";
 import { AdminPageTitle } from "@/components/admin/Title";
 import { KeyIcon } from "@/components/icons/icons";
@@ -95,6 +97,7 @@ function Main() {
   const [keyIsGenerating, setKeyIsGenerating] = useState(false);
   const [showCreateUpdateForm, setShowCreateUpdateForm] = useState(false);
   const [selectedApiKey, setSelectedApiKey] = useState<APIKey | undefined>();
+  const { t } = useTranslation(["chat", "modal"]);
 
   const handleEdit = (apiKey: APIKey) => {
     setSelectedApiKey(apiKey);
@@ -173,10 +176,10 @@ function Main() {
         <TableHead>
           <TableRow>
             <TableHeaderCell>Name</TableHeaderCell>
-            <TableHeaderCell>API Key</TableHeaderCell>
+            <TableHeaderCell>{t("API Key")}</TableHeaderCell>
             <TableHeaderCell>Role</TableHeaderCell>
             <TableHeaderCell>Regenerate</TableHeaderCell>
-            <TableHeaderCell>Delete</TableHeaderCell>
+            <TableHeaderCell>{t("Delete")}</TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -228,7 +231,8 @@ function Main() {
                         type: "error",
                         message: `Failed to regenerate API Key: ${errorMsg}`,
                       });
-                      return;
+                      
+return;
                     }
                     const newKey = (await response.json()) as APIKey;
                     setFullApiKey(newKey.api_key);

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import React, { useRef, useState } from "react";
 import { Modal } from "@/components/Modal";
 import { Button, Text, Callout, Subtitle, Divider } from "@tremor/react";
@@ -35,6 +36,7 @@ export function ChangeCredentialsModal({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [deletionError, setDeletionError] = useState<string>("");
+  const { t } = useTranslation(["modal"]);
 
   const clearFileInput = () => {
     setFileName("");
@@ -169,7 +171,7 @@ export function ChangeCredentialsModal({
             </p>
 
             <div className="mb-4 flex flex-col gap-y-2">
-              <Label className="mt-2">API Key</Label>
+              <Label className="mt-2">{t("API Key")}</Label>
               {useFileUpload ? (
                 <>
                   <Label className="mt-2">Upload JSON File</Label>
@@ -203,7 +205,7 @@ export function ChangeCredentialsModal({
 
               {isProxy && (
                 <>
-                  <Label className="mt-2">API URL</Label>
+                  <Label className="mt-2">{t("API Base")}</Label>
 
                   <input
                     className={`

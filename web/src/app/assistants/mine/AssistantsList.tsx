@@ -1,5 +1,7 @@
 "use client";
 
+
+import { useTranslation } from "react-i18next";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { MinimalUserSnapshot, User } from "@/lib/types";
 import { Persona } from "@/app/admin/assistants/interfaces";
@@ -113,6 +115,7 @@ function AssistantListItem({
   isDragging?: boolean;
 }) {
   const router = useRouter();
+  const { t } = useTranslation("chat");
   const [showSharingModal, setShowSharingModal] = useState(false);
 
   const isOwnedByUser = checkUserOwnsAssistant(user, assistant);
@@ -247,8 +250,7 @@ function AssistantListItem({
                     className="flex items-center gap-x-2 px-4 py-2 hover:bg-gray-100 w-full text-left text-red-600"
                     onClick={() => deleteAssistant(assistant)}
                   >
-                    <FiTrash size={18} /> Delete
-                  </button>
+                    <FiTrash size={18} />{t("Delete")}</button>
                 ) : null,
                 isOwnedByUser ? (
                   <button
@@ -272,8 +274,7 @@ function AssistantListItem({
                       setShowSharingModal(true);
                     }}
                   >
-                    <FiShare2 size={18} className="text-text-800" /> Share
-                  </button>
+                    <FiShare2 size={18} className="text-text-800" />{t("Share")}</button>
                 ) : null,
               ]}
             </DefaultPopover>
@@ -348,7 +349,8 @@ export function AssistantsList({
         const newAssistants = arrayMove(assistants, oldIndex, newIndex);
 
         updateUserAssistantList(newAssistants.map((a) => a.id));
-        return newAssistants;
+        
+return newAssistants;
       });
     }
   }

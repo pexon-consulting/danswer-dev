@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { FiImage, FiSearch } from "react-icons/fi";
 import { Persona } from "../admin/assistants/interfaces";
 
@@ -10,6 +11,7 @@ export function AssistantTools({
   list?: boolean;
   hovered?: boolean;
 }) {
+  const { t } = useTranslation("search");
   return (
     <div className="relative text-xs overflow-x-hidden flex text-subtle">
       <span
@@ -38,13 +40,12 @@ export function AssistantTools({
                     ${list ? "bg-background-125" : "bg-background-100"}`}
                 >
                   <div className="flex gap-x-1">
-                    <FiSearch key={ind} className="ml-1 h-3 w-3 my-auto" />
-                    Search
-                  </div>
+                    <FiSearch key={ind} className="ml-1 h-3 w-3 my-auto" />{t("Search")}</div>
                 </div>
               );
             } else if (tool.name === "ImageGenerationTool") {
-              return (
+              
+return (
                 <div
                   key={ind}
                   className={`

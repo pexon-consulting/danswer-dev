@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { BasicClickable } from "@/components/BasicClickable";
 import { ControlledPopup, DefaultDropdownElement } from "@/components/Dropdown";
 import { useState } from "react";
@@ -41,6 +42,7 @@ export function SearchTypeSelector({
   setSelectedSearchType: React.Dispatch<React.SetStateAction<string>>;
 }) {
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation("search");
 
   return (
     <ControlledPopup
@@ -61,8 +63,7 @@ export function SearchTypeSelector({
             </>
           ) : (
             <>
-              <FiSearch className="my-auto mr-1" /> Search
-            </>
+              <FiSearch className="my-auto mr-1" />{t("Search")}</>
           )}
         </div>
       </BasicClickable>
